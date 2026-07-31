@@ -107,6 +107,8 @@
     background:var(--dorado); color:#fff; font-size:11px; font-weight:700; flex-shrink:0;
   }
 
+  .ley-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;}
+
   .section{padding:80px 0;}
   .section-oscura{background:var(--tinta);}
   .section-head{max-width:580px; margin-bottom:48px;}
@@ -391,7 +393,7 @@
       <div class="section-eyebrow" style="color:var(--dorado);">Además, te cubre en algo obligatorio</div>
       <div class="display section-title">La ley pide que capacites a tu personal en seguridad</div>
     </div>
-    <div class="ley-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
+    <div class="ley-grid">
       <div>
         <p style="font-size:15.5px; color:#4a4536; margin-bottom:16px;">La Ley 19.587 (Decreto 351/79, Art. 208) obliga a todo establecimiento a capacitar a su personal en seguridad e higiene, prevención de accidentes y enfermedades del trabajo.</p>
         <p style="font-size:15.5px; color:#4a4536;">Sumá ese curso como uno más dentro de Inductoria. Cada empleado lo confirma con un acuse de recibido, con fecha y todo, por si alguna vez te lo piden.</p>
@@ -431,7 +433,7 @@
         <li><span class="bullet-badge">✓</span> Panel con reportes de un clic</li>
         <li><span class="bullet-badge">✓</span> Alta y baja de empleados sin límite</li>
       </ul>
-      <a class="btn-primario" style="width:100%; justify-content:center;" href="https://app.inductoria.com.ar">Empezar ahora</a>
+      <a class="btn-primario" style="width:100%; justify-content:center;" href="#" onclick="mostrarAvisoPreLanzamiento(); return false;">Empezar ahora</a>
     </div>
   </div>
 </section>
@@ -440,13 +442,21 @@
   <div class="wrap">
     <h2 class="display">Tu próximo empleado nuevo, productivo desde el primer día</h2>
     <p>Armá tu primer microcurso antes de tu próximo ingreso.</p>
-    <a class="btn-primario" href="https://app.inductoria.com.ar">Empezar ahora</a>
+    <a class="btn-primario" href="#" onclick="mostrarAvisoPreLanzamiento(); return false;">Empezar ahora</a>
   </div>
 </section>
 
 <footer>
   inductoria · capacitación simple para equipos chicos
 </footer>
+
+<script>
+  // Pausa temporal: la app todavía no está lanzada oficialmente.
+  // Los botones de acceso muestran este aviso en vez de llevar a app.inductoria.com.ar
+  function mostrarAvisoPreLanzamiento(){
+    alert('Todavía no lanzamos oficialmente. Muy pronto vas a poder entrar. ¡Gracias por tu interés!');
+  }
+</script>
 
 </body>
 </html>
