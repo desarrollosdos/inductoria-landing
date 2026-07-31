@@ -42,9 +42,9 @@
   }
   .nav-inner{max-width:1080px; margin:0 auto; width:100%; display:flex; align-items:center; justify-content:space-between;}
   .logo{display:flex; align-items:center; gap:10px;}
-  .logo-mark{width:36px; height:36px; display:flex; align-items:center; justify-content:center;}
+  .logo-mark{width:48px; height:48px; display:flex; align-items:center; justify-content:center;}
   .logo-mark svg{transform:rotate(-4deg);}
-  .logo-name{font-family:'Fredoka', sans-serif; font-weight:600; font-size:20px; color:var(--claro);}
+  .logo-name{font-family:'Fredoka', sans-serif; font-weight:600; font-size:25px; color:var(--claro);}
   .nav-cta{border:1.5px solid rgba(247,249,250,0.35); color:var(--claro); border-radius:8px; padding:9px 18px; font-weight:600; font-size:14px; transition:border-color 0.15s ease, background 0.15s ease;}
   .nav-cta:hover{border-color:var(--dorado); background:rgba(193,80,46,0.12);}
 
@@ -199,7 +199,9 @@
   .cta-final h2{font-family:'Fredoka',sans-serif; font-weight:600; font-size:28px; margin-bottom:14px; max-width:520px; margin-left:auto; margin-right:auto;}
   .cta-final p{opacity:0.82; margin-bottom:28px; font-size:15.5px;}
 
-  footer{padding:32px 0; text-align:center; font-size:13px; color:#8a8471;}
+  footer{background:var(--tarjeta); border-top:1px solid var(--linea); padding:36px 0;}
+  .footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;}
+  .footer-tag{font-size:13.5px; color:#6b6455;}
 
   @media (max-width:820px){
     .hero-grid, .gami-grid, .setup-grid, .ley-grid{grid-template-columns:1fr;}
@@ -218,7 +220,7 @@
   <div class="nav-inner">
     <div class="logo">
       <div class="logo-mark">
-        <svg width="36" height="36" viewBox="0 0 120 120">
+        <svg width="48" height="48" viewBox="0 0 120 120">
           <rect x="15" y="10" width="90" height="100" rx="14" fill="var(--claro)"/>
           <circle cx="60" cy="33" r="14" fill="var(--coral)"/>
           <rect x="40" y="57" width="40" height="6" rx="3" fill="var(--tinta)"/>
@@ -447,7 +449,20 @@
 </section>
 
 <footer>
-  inductoria · capacitación simple para equipos chicos
+  <div class="wrap footer-inner">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg width="40" height="40" viewBox="0 0 120 120">
+          <rect x="15" y="10" width="90" height="100" rx="14" fill="var(--tinta)"/>
+          <circle cx="60" cy="33" r="14" fill="var(--coral)"/>
+          <rect x="40" y="57" width="40" height="6" rx="3" fill="var(--dorado)"/>
+          <rect x="40" y="70" width="40" height="6" rx="3" fill="#8a9199"/>
+        </svg>
+      </div>
+      <div class="logo-name" style="color:var(--tinta);">inductoria</div>
+    </div>
+    <span class="footer-tag">capacitación simple para equipos chicos</span>
+  </div>
 </footer>
 
 <script>
@@ -460,4 +475,3 @@
 
 </body>
 </html>
-
