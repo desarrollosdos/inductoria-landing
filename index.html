@@ -566,15 +566,11 @@
     alert('Todavía no lanzamos oficialmente. Muy pronto vas a poder entrar. ¡Gracias por tu interés!');
   }
 
-  // Trae el precio vigente desde Supabase (tabla configuracion_precio, vía
-  // el Edge Function público precio-publico) y lo muestra acá. Si cambiás
-  // el precio desde Admin, esta landing lo refleja sola, sin tocar el HTML.
-  const SUPABASE_URL = 'https://vclvzpdopjybzlzukttp.supabase.co';
-  const SUPABASE_ANON_KEY = 'PEGAR_ACA_LA_ANON_KEY';
-
-  fetch(`${SUPABASE_URL}/functions/v1/precio-publico`, {
-    headers: { Authorization: `Bearer ${SUPABASE_ANON_KEY}`, apikey: SUPABASE_ANON_KEY }
-  })
+  // Trae el precio vigente a través de /api/precio (Cloudflare Pages
+  // Function propia, misma dominio). La key de Supabase queda del lado
+  // del servidor (variable de entorno en Cloudflare), nunca llega al
+  // navegador ni queda visible en este HTML.
+  fetch('/api/precio')
     .then((res) => res.json())
     .then((data) => {
       if (!data.precio_base) return;
