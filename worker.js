@@ -6,11 +6,11 @@
 // entorno de Cloudflare) o si es cualquier otra URL, en cuyo caso la deja
 // pasar tal cual al servidor de archivos estáticos (env.ASSETS), que es
 // quien sirve el index.html y el resto del sitio.
-
+ 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-
+ 
     if (url.pathname === '/api/precio') {
       try {
         const res = await fetch(`${env.SUPABASE_URL}/functions/v1/precio-publico`, {
@@ -30,11 +30,11 @@ export default {
         });
       }
     }
-
+ 
     if (url.pathname === '/api/visita' && request.method === 'POST') {
       try {
         const body = await request.text();
-        await fetch(`${env.SUPABASE_URL}/functions/v1/registrar-visita`, {
+        const res = await fetch(`${env.SUPABASE_URL}/functions/v1/registrar-visita`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
@@ -43,17 +43,18 @@ export default {
           },
           body: body || '{}',
         });
-        // No importa el resultado real, la landing no debe esperar ni romperse por esto.
-        return new Response(JSON.stringify({ ok: true }), {
+        const data = await res.text();
+        return new Response(JSON.stringify({ ok: res.ok, status: res.status, data }), {
           headers: { 'Content-Type': 'application/json' },
         });
       } catch (err) {
-        return new Response(JSON.stringify({ ok: false }), {
+        return new Response(JSON.stringify({ ok: false, error: String(err) }), {
           headers: { 'Content-Type': 'application/json' },
         });
       }
     }
-
+ 
     return env.ASSETS.fetch(request);
   },
 };
+ 
