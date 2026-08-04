@@ -566,6 +566,14 @@
     alert('Todavía no lanzamos oficialmente. Muy pronto vas a poder entrar. ¡Gracias por tu interés!');
   }
 
+  // Registra la visita, en segundo plano, sin bloquear ni afectar la carga
+  // de la página si falla.
+  fetch('/api/visita', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ path: window.location.pathname }),
+  }).catch(() => {});
+
   // Trae el precio vigente a través de /api/precio (Cloudflare Pages
   // Function propia, misma dominio). La key de Supabase queda del lado
   // del servidor (variable de entorno en Cloudflare), nunca llega al

@@ -31,6 +31,29 @@ export default {
       }
     }
 
+    if (url.pathname === '/api/visita' && request.method === 'POST') {
+      try {
+        const body = await request.text();
+        await fetch(`${env.SUPABASE_URL}/functions/v1/registrar-visita`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
+            apikey: env.SUPABASE_ANON_KEY,
+            'Content-Type': 'application/json',
+          },
+          body: body || '{}',
+        });
+        // No importa el resultado real, la landing no debe esperar ni romperse por esto.
+        return new Response(JSON.stringify({ ok: true }), {
+          headers: { 'Content-Type': 'application/json' },
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ ok: false }), {
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
     return env.ASSETS.fetch(request);
   },
 };
