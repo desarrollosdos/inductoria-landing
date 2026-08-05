@@ -532,7 +532,7 @@
     </div>
     <div class="precio-card">
       <div class="precio-etiqueta">Plan comercio</div>
-      <div class="precio-monto" id="precio-monto">$12.000<span>/mes</span></div>
+      <div class="precio-monto" id="precio-monto" style="opacity:0.35; font-size:20px;">Cargando precio…</div>
       <div class="precio-detalle">por tu primera sucursal · empleados y cursos ilimitados adentro, no pagás por persona</div>
       <ul class="precio-lista">
         <li><span class="bullet-badge">✓</span> Capacitás a un empleado nuevo en minutos, sin frenar el local</li>
@@ -610,7 +610,11 @@
       const base = data.precio_base;
       const monto = Math.round(base).toLocaleString('es-AR');
       const el = document.getElementById('precio-monto');
-      if (el) el.innerHTML = `$${monto}<span>/mes</span>`;
+      if (el) {
+        el.innerHTML = `$${monto}<span>/mes</span>`;
+        el.style.opacity = '1';
+        el.style.fontSize = '';
+      }
 
       const tiersEl = document.getElementById('precio-tiers');
       if (tiersEl) {
@@ -621,7 +625,8 @@
       }
     })
     .catch(() => {
-      // Si falla, se queda con el precio escrito en el HTML como respaldo.
+      const el = document.getElementById('precio-monto');
+      if (el) el.textContent = 'Consultanos el precio';
     });
 </script>
 
