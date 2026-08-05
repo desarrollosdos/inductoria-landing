@@ -13,6 +13,8 @@
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary">
 <meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -483,7 +485,7 @@
         <p style="font-size:15.5px; color:#332f26; font-weight:500; margin-bottom:16px;">La Ley 19.587 (Decreto 351/79, Art. 208) obliga a todo establecimiento a capacitar a su personal en seguridad e higiene, prevención de accidentes y enfermedades del trabajo.</p>
         <p style="font-size:15.5px; color:#332f26; font-weight:500;">Sumá ese curso como uno más dentro de Inductoria. Cada empleado lo confirma con un acuse de recibido, con fecha y todo, por si alguna vez te lo piden.</p>
       </div>
-      <div class="curso-card" style="max-width:320px; border:1.5px solid rgba(193,80,46,0.35);">
+      <div class="curso-card" style="border:1.5px solid rgba(193,80,46,0.35);">
         <div class="curso-icono">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
@@ -531,13 +533,19 @@
     <div class="precio-card">
       <div class="precio-etiqueta">Plan comercio</div>
       <div class="precio-monto" id="precio-monto">$12.000<span>/mes</span></div>
-      <div class="precio-detalle">empleados y cursos ilimitados, no pagás por cabeza</div>
+      <div class="precio-detalle">por tu primera sucursal · empleados y cursos ilimitados adentro, no pagás por persona</div>
       <ul class="precio-lista">
-        <li><span class="bullet-badge">✓</span> Setup asistido inicial</li>
-        <li><span class="bullet-badge">✓</span> Cursos y evaluaciones</li>
-        <li><span class="bullet-badge">✓</span> Panel con reportes de un clic</li>
+        <li><span class="bullet-badge">✓</span> Capacitás a un empleado nuevo en minutos, sin frenar el local</li>
+        <li><span class="bullet-badge">✓</span> 3 cursos ya armados: Seguridad e Higiene (obligatorio por ley), Manipulación de Alimentos y Atención a Clientes</li>
+        <li><span class="bullet-badge">✓</span> Subís tus propios manuales y la IA arma el curso por vos</li>
+        <li><span class="bullet-badge">✓</span> El empleado entra desde el celular con un link, sin instalar nada</li>
+        <li><span class="bullet-badge">✓</span> Vas viendo quién completó cada curso, sin perseguir a nadie</li>
         <li><span class="bullet-badge">✓</span> Alta y baja de empleados sin límite</li>
       </ul>
+      <div style="background:#FBF3E7; border-radius:14px; padding:16px 18px; margin-bottom:22px; text-align:left;">
+        <p style="font-size:13.5px; font-weight:600; color:#3d382c; margin-bottom:8px;">¿Tenés más de una sucursal? Cada una adicional sale menos:</p>
+        <div id="precio-tiers" style="font-size:13px; color:#6b6455; display:flex; flex-direction:column; gap:5px;"></div>
+      </div>
       <a class="btn-primario" style="width:100%; justify-content:center;" href="#" onclick="mostrarAvisoPreLanzamiento(); return false;">Empezar ahora</a>
     </div>
   </div>
@@ -583,17 +591,34 @@
     body: JSON.stringify({ path: window.location.pathname }),
   }).catch(() => {});
 
-  // Trae el precio vigente a través de /api/precio (Cloudflare Pages
-  // Function propia, misma dominio). La key de Supabase queda del lado
-  // del servidor (variable de entorno en Cloudflare), nunca llega al
-  // navegador ni queda visible en este HTML.
+  // Trae el precio vigente a través de /api/precio (ruta propia del
+  // Worker, mismo dominio). Y con ese precio base, calcula los 4 tramos
+  // por cantidad de sucursales con la misma proporción de descuento que
+  // usa Admin (src/lib/precio.js en la app), para que el número siempre
+  // sea el mismo en los dos lados.
+  const TIERS_PRECIO = [
+    { hasta: 1, factor: 1, etiqueta: '1 sucursal' },
+    { hasta: 4, factor: 10000 / 12000, etiqueta: '2 a 4 sucursales' },
+    { hasta: 9, factor: 9000 / 12000, etiqueta: '5 a 9 sucursales' },
+    { hasta: Infinity, factor: 8000 / 12000, etiqueta: '10 o más sucursales' },
+  ];
+
   fetch('/api/precio')
     .then((res) => res.json())
     .then((data) => {
       if (!data.precio_base) return;
-      const monto = Math.round(data.precio_base).toLocaleString('es-AR');
+      const base = data.precio_base;
+      const monto = Math.round(base).toLocaleString('es-AR');
       const el = document.getElementById('precio-monto');
       if (el) el.innerHTML = `$${monto}<span>/mes</span>`;
+
+      const tiersEl = document.getElementById('precio-tiers');
+      if (tiersEl) {
+        tiersEl.innerHTML = TIERS_PRECIO.map((t) => {
+          const valor = Math.round((base * t.factor) / 100) * 100;
+          return `<div style="display:flex; justify-content:space-between;"><span>${t.etiqueta}</span><span style="font-weight:700; color:#C1502E;">$${valor.toLocaleString('es-AR')} c/u</span></div>`;
+        }).join('');
+      }
     })
     .catch(() => {
       // Si falla, se queda con el precio escrito en el HTML como respaldo.
