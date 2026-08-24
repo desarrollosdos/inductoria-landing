@@ -30,6 +30,9 @@
   header .wrap {
     max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   header a {
     color: #fff;
@@ -101,7 +104,15 @@
 <body>
 
 <header>
-  <div class="wrap"><a href="/">Inductoria</a></div>
+  <div class="wrap">
+    <svg width="32" height="32" viewBox="0 0 120 120" aria-hidden="true" style="flex-shrink:0;">
+      <rect x="15" y="10" width="90" height="100" rx="14" fill="var(--cream)" transform="rotate(-3 60 60)" />
+      <circle cx="60" cy="33" r="14" fill="var(--terracota)" transform="rotate(-3 60 60)" />
+      <rect x="40" y="57" width="40" height="6" rx="3" fill="var(--terracota)" transform="rotate(-3 60 60)" />
+      <rect x="40" y="70" width="40" height="6" rx="3" fill="#8a8a86" transform="rotate(-3 60 60)" />
+    </svg>
+    <a href="/">Inductoria</a>
+  </div>
 </header>
 
 <main>
