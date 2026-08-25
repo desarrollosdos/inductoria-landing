@@ -11,15 +11,38 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://inductoria.com.ar/">
 <meta property="og:locale" content="es_AR">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://inductoria.com.ar/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Inductoria - capacitación de equipos con IA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Inductoria - Capacitá a tu equipo sin repetir lo mismo cada vez">
+<meta name="twitter:description" content="Convertí el contenido que ya tenés en cursos cortos para que tu equipo aprenda solo, y en procedimientos documentados que se descargan en PDF.">
+<meta name="twitter:image" content="https://inductoria.com.ar/og-image.png">
 <meta name="robots" content="index, follow">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Inductoria",
+  "url": "https://inductoria.com.ar/",
+  "description": "Capacitá al equipo de tu negocio sin perder tiempo. La IA genera el curso, vos lo aprobás en minutos, tus empleados lo hacen desde el dispositivo móvil.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "image": "https://inductoria.com.ar/og-image.png",
+  "inLanguage": "es-AR",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Inductoria",
+    "url": "https://inductoria.com.ar/"
+  }
+}
+</script>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#2C2C2A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -292,70 +315,9 @@
   @media (max-width:400px){
     .credencial{width:100%;}
   }
-
-  /* BANNER DE INSTALACIÓN (PWA) */
-  #pwa-banner{
-    position:fixed; left:12px; right:12px; bottom:-140px;
-    background:var(--tinta); color:#fff;
-    border-radius:16px; padding:14px 16px;
-    display:flex; align-items:center; gap:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.28);
-    z-index:9999;
-    transition:bottom 0.35s ease;
-  }
-  #pwa-banner.is-visible{ bottom:16px; }
-  #pwa-banner img{ width:44px; height:44px; border-radius:11px; flex-shrink:0; }
-  #pwa-banner .pwa-texto{ flex:1; min-width:0; }
-  #pwa-banner .pwa-texto strong{ display:block; font-family:'Fredoka', sans-serif; font-size:15px; }
-  #pwa-banner .pwa-texto span{ display:block; font-size:12.5px; color:#D8D3CE; margin-top:2px; }
-  #pwa-banner .pwa-instalar{
-    background:var(--coral); color:#fff; border:none; border-radius:10px;
-    padding:9px 14px; font-weight:600; font-size:13.5px; white-space:nowrap; cursor:pointer;
-  }
-  #pwa-banner .pwa-cerrar{
-    background:transparent; border:none; color:#B8B2AB; font-size:20px; line-height:1;
-    padding:4px 2px; cursor:pointer;
-  }
-  #pwa-ios-steps{
-    position:fixed; inset:0; background:rgba(28,26,24,0.55);
-    display:none; align-items:flex-end; justify-content:center; z-index:10000;
-  }
-  #pwa-ios-steps.is-visible{ display:flex; }
-  #pwa-ios-steps .pwa-hoja{
-    background:var(--tarjeta); width:100%; max-width:480px;
-    border-radius:20px 20px 0 0; padding:22px 22px 26px;
-  }
-  #pwa-ios-steps h3{ font-family:'Fredoka', sans-serif; font-size:18px; margin-bottom:14px; }
-  #pwa-ios-steps ol{ padding-left:20px; display:flex; flex-direction:column; gap:8px; font-size:14.5px; }
-  #pwa-ios-steps .pwa-cerrar-hoja{
-    margin-top:18px; width:100%; background:var(--tinta); color:#fff; border:none;
-    border-radius:10px; padding:11px; font-weight:600; cursor:pointer;
-  }
 </style>
 </head>
 <body>
-
-<div id="pwa-banner">
-  <img src="/icon-192.png" alt="">
-  <div class="pwa-texto">
-    <strong>Instalá Inductoria</strong>
-    <span>Accedé más rápido desde tu inicio, sin buscarla en el navegador.</span>
-  </div>
-  <button type="button" class="pwa-instalar" id="pwa-instalar-btn">Instalar</button>
-  <button type="button" class="pwa-cerrar" id="pwa-cerrar-btn" aria-label="Cerrar">&times;</button>
-</div>
-
-<div id="pwa-ios-steps">
-  <div class="pwa-hoja">
-    <h3>Instalar Inductoria en tu iPhone</h3>
-    <ol>
-      <li>Tocá el ícono <strong>Compartir</strong> (el cuadrado con la flecha hacia arriba) en la barra de Safari.</li>
-      <li>Elegí <strong>"Agregar a la pantalla de inicio"</strong>.</li>
-      <li>Tocá <strong>"Agregar"</strong> arriba a la derecha.</li>
-    </ol>
-    <button type="button" class="pwa-cerrar-hoja" id="pwa-cerrar-hoja-btn">Entendido</button>
-  </div>
-</div>
 
 <nav>
   <div class="nav-inner">
@@ -736,111 +698,6 @@
       const el = document.getElementById('precio-monto');
       if (el) el.textContent = 'Consultanos el precio';
     });
-</script>
-
-<script>
-  // ---- Instalación como app (PWA): service worker + banner ----
-  (function () {
-    var DISMISS_KEY = 'inductoria_pwa_dismissed_at';
-    var INSTALLED_KEY = 'inductoria_pwa_installed';
-    var COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000; // 14 días
-
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js').catch(function () {});
-      });
-    }
-
-    var isStandalone =
-      window.matchMedia('(display-mode: standalone)').matches ||
-      window.navigator.standalone === true;
-
-    function yaInstalada() {
-      try {
-        return isStandalone || localStorage.getItem(INSTALLED_KEY) === '1';
-      } catch (e) {
-        return isStandalone;
-      }
-    }
-
-    function fueDescartadaRecientemente() {
-      try {
-        var t = localStorage.getItem(DISMISS_KEY);
-        return t && Date.now() - parseInt(t, 10) < COOLDOWN_MS;
-      } catch (e) {
-        return false;
-      }
-    }
-
-    if (yaInstalada() || fueDescartadaRecientemente()) return;
-
-    var banner = document.getElementById('pwa-banner');
-    var btnInstalar = document.getElementById('pwa-instalar-btn');
-    var btnCerrar = document.getElementById('pwa-cerrar-btn');
-    var iosSheet = document.getElementById('pwa-ios-steps');
-    var btnCerrarHoja = document.getElementById('pwa-cerrar-hoja-btn');
-
-    function mostrarBanner() {
-      setTimeout(function () {
-        banner.classList.add('is-visible');
-      }, 1200);
-    }
-
-    function ocultarBanner() {
-      banner.classList.remove('is-visible');
-    }
-
-    function descartar() {
-      ocultarBanner();
-      try {
-        localStorage.setItem(DISMISS_KEY, String(Date.now()));
-      } catch (e) {}
-    }
-
-    btnCerrar.addEventListener('click', descartar);
-
-    var ua = navigator.userAgent || '';
-    var esIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-    if (esIOS) {
-      // iOS no tiene instalación automática: mostramos el paso a paso.
-      btnInstalar.textContent = 'Cómo instalar';
-      btnInstalar.addEventListener('click', function () {
-        iosSheet.classList.add('is-visible');
-      });
-      btnCerrarHoja.addEventListener('click', function () {
-        iosSheet.classList.remove('is-visible');
-      });
-      mostrarBanner();
-    } else {
-      // Android / Chrome / Edge / desktop: esperamos el evento nativo del navegador.
-      var deferredPrompt = null;
-
-      window.addEventListener('beforeinstallprompt', function (e) {
-        e.preventDefault();
-        deferredPrompt = e;
-        mostrarBanner();
-      });
-
-      window.addEventListener('appinstalled', function () {
-        ocultarBanner();
-        try {
-          localStorage.setItem(INSTALLED_KEY, '1');
-        } catch (e) {}
-      });
-
-      btnInstalar.addEventListener('click', function () {
-        if (!deferredPrompt) return;
-        ocultarBanner();
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.finally(function () {
-          deferredPrompt = null;
-        });
-      });
-      // Si el navegador nunca dispara beforeinstallprompt (no soporta
-      // instalación, ej. Firefox), el banner simplemente no aparece.
-    }
-  })();
 </script>
 
 </body>
