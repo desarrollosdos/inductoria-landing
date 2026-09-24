@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Inductoria</title>
+<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#FBF3EC;font-family:system-ui,sans-serif;color:#2C2C2A}</style>
+</head>
+<body>
+<p>Abriendo Inductoria…</p>
+<script>
+  // Cuenta el clic que viene del link de la bio de Instagram y abre la web.
+  var destino = '/?utm_source=instagram&utm_medium=bio';
+  var ir = function () { location.replace(destino); };
+  try {
+    fetch('https://ropewcsfdypiqivnzqpj.supabase.co/functions/v1/registrar-clic-ig?app=inductoria&fuente=bio', { method: 'POST', keepalive: true, mode: 'no-cors' }).finally(ir);
+    setTimeout(ir, 800);
+  } catch (e) { ir(); }
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=/"></noscript>
+</body>
+</html>
